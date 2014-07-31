@@ -8,26 +8,6 @@ import java.util.ArrayList;
 
 public class ExponentialDecaySort {
 
-    public static void main(String[] args)
-    {
-        System.out.println("A test of for loop properties");
-        int maxValue = 10;
-        for(int i = 0; i < maxValue; i++)
-        {
-            if ((i==4))
-            {
-                i++;
-                maxValue--;
-            }
-            System.out.println(i);
-        }
-        maxValue = 10;
-        for(int i = 0; i < maxValue; i++)
-        {
-            System.out.println(i);
-        }
-    }
-
     public void exponentialDecaySort(ArrayList<Integer> inputArray)
     {
         /**
@@ -63,13 +43,13 @@ public class ExponentialDecaySort {
          * Using the time and width, we calculate where we are on an exponential decay,
          * and take 1-f(time, width) as a probability to decay.
          */
-        double decayParameter = 0.0;
+        double decayParameter;
         // width > 0 values are time/width, <= 0 values are ln(3.0+width)*time
         // We don't want ln(e+width) since for a value of width = 0, we'd get the same number
         // as for width = 1.
         if(width <= 0)
         {
-            decayParameter = Math.log(3.0 + width)*time;
+            decayParameter = Math.log(3.0 - width)*time;
         }
         else
         {
@@ -104,25 +84,6 @@ public class ExponentialDecaySort {
                     idecay--;
                     decaysRemaining--;
                 }
-            }
-        }
-    }
-
-    private void exponentialDecayShuffle(ArrayList<Integer> inputArray, int endpoint)
-    {
-        /**
-         * The lower the number, the sooner it should decay. We remove from, and append to,
-         * the inputArray in the order of decays.
-         */
-
-        for(int idecay = 0; idecay < endpoint; idecay++)
-        {
-            boolean hasDecayed = false;
-            // Exponential decay using the variable in the input array as a "half-life".
-            if(hasDecayed)
-            {
-                exponentialDecayShuffle(inputArray, endpoint - 1);
-                break;
             }
         }
     }
